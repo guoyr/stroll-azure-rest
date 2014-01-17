@@ -1,5 +1,5 @@
 var express = require('express'),
-    wine = require('./routes/wines');
+    prices = require('./routes/prices');
  
 var app = express();
  
@@ -8,11 +8,11 @@ app.configure(function () {
     app.use(express.bodyParser());
 });
  
-app.get('/wines', wine.findAll);
-app.get('/wines/:id', wine.findById);
-app.post('/wines', wine.addWine);
-app.put('/wines/:id', wine.updateWine);
-app.delete('/wines/:id', wine.deleteWine);
+app.get('/prices', prices.findAll);
+app.get('/prices/:id', prices.findById);
+app.post('/prices', prices.addPrice);
+app.put('/prices/:id', prices.updatePrice);
+app.delete('/prices/:id', prices.deletePrice);
  
 app.listen(80);
 console.log('Listening on port 80...');
