@@ -37,7 +37,7 @@ exports.findAll = function(req, res) {
     });
 };
  
-exports.addprice = function(req, res) {
+exports.addPrice = function(req, res) {
     var price = req.body;
     console.log('Adding price: ' + JSON.stringify(price));
     db.collection('prices', function(err, collection) {
@@ -52,7 +52,7 @@ exports.addprice = function(req, res) {
     });
 }
  
-exports.updateprice = function(req, res) {
+exports.updatePrice = function(req, res) {
     var id = req.params.id;
     var price = req.body;
     console.log('Updating price: ' + id);
@@ -70,7 +70,7 @@ exports.updateprice = function(req, res) {
     });
 }
  
-exports.deleteprice = function(req, res) {
+exports.deletePrice = function(req, res) {
     var id = req.params.id;
     console.log('Deleting price: ' + id);
     db.collection('prices', function(err, collection) {
