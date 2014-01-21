@@ -20,11 +20,11 @@ db.open(function(err, db) {
     }
 });
  
-exports.findById = function(req, res) {
-    var id = req.params.id;
-    console.log('Retrieving price: ' + id);
-    db.collection('prices', function(err, collection) {
-        collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
+exports.findByNpi = function(req, res) {
+    var npi = req.params.npi;
+    console.log('Retrieving price: ' + npi);
+    db.collection('npi', function(err, collection) {
+        collection.findOne({'npi':new BSON.ObjectID(npi)}, function(err, item) {
             // /**
             //  * HOW TO Make an HTTP Call - GET
             //  */

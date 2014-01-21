@@ -10,7 +10,7 @@ app.configure(function () {
 });
  
 app.get('/prices', prices.findAll);
-app.get('/prices/:id', prices.findById);
+app.get('/prices/:npi', prices.findByNpi);
 app.post('/prices', prices.addPrice);
 app.put('/prices/:id', prices.updatePrice);
 app.delete('/prices/:id', prices.deletePrice);
