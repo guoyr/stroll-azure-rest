@@ -1,16 +1,17 @@
 var mongo = require('mongodb');
- 
+var https = require('https');
+  
 var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
  
 var server = new Server('localhost', 27017, {auto_reconnect: true});
-db = new Db('pricedb', server);
+db = new Db('strollnpi', server);
  
 db.open(function(err, db) {
     if(!err) {
         console.log("Connected to 'pricedb' database");
-        db.collection('prices', {strict:true}, function(err, collection) {
+        db.collection('npi', {strict:true}, function(err, collection) {
             if (err) {
                 console.log("The 'prices' collection doesn't exist. Creating it with sample data...");
                 populateDB();
@@ -24,13 +25,48 @@ exports.findById = function(req, res) {
     console.log('Retrieving price: ' + id);
     db.collection('prices', function(err, collection) {
         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
+            // /**
+            //  * HOW TO Make an HTTP Call - GET
+            //  */
+            // // options for GET
+            // var optionsget = {
+            //     host : 'graph.facebook.com', // here only the domain name
+            //     // (no http/https !)
+            //     port : 443,
+            //     path : '/youscada', // the rest of the url with parameters if needed
+            //     method : 'GET' // do GET
+            // };
+             
+            // console.info('Options prepared:');
+            // console.info(optionsget);
+            // console.info('Do the GET call');
+             
+            // // do the GET request
+            // var reqGet = https.request(optionsget, function(res1) {
+            //     console.log("statusCode: ", res1.statusCode);
+            //     // uncomment it for header details
+            // //  console.log("headers: ", res.headers);
+             
+             
+            //     res1.on('data', function(d) {
+            //         console.info('GET result:\n');
+            //         process.stdout.write(d);
+            //         console.info('\n\nCall completed');
+            //     });
+             
+            // });
+             
+            // reqGet.end();
+            // reqGet.on('error', function(e) {
+            //     console.error(e);
+            // });
             res.send(item);
         });
     });
 };
  
 exports.findAll = function(req, res) {
-    db.collection('prices', function(err, collection) {
+    db.collection('npi', function(err, collection) {
         collection.find().toArray(function(err, items) {
             res.send(items);
         });
@@ -69,6 +105,8 @@ exports.updatePrice = function(req, res) {
         });
     });
 }
+ 
+
  
 exports.deletePrice = function(req, res) {
     var id = req.params.id;

@@ -1,5 +1,6 @@
 var express = require('express'),
-    prices = require('./routes/prices');
+    prices = require('./routes/prices'),
+    mongoose = require('mongoose');
  
 var app = express();
  
