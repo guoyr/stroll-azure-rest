@@ -1,13 +1,13 @@
 var mongo = require('mongodb');
 var https = require('https');
   
-var Server = mongo.Server,
-    Db = mongo.Db,
-    BSON = mongo.BSONPure;
- 
-var server = new Server('localhost', 27017, {auto_reconnect: true});
-db = new Db('strollnpi', server);
- 
+var mongoose = require('mongoose');
+var db = mongoose.connect('mongodb://localhost/strollnpi');
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+    console.log("opened db");
+})
+
 db.open(function(err, db) {
     if(!err) {
         console.log("Connected to 'pricedb' database");
