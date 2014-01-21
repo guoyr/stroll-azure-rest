@@ -21,10 +21,10 @@ db.open(function(err, db) {
 });
  
 exports.findByNpi = function(req, res) {
-    var npi = req.params.npi;
-    console.log('Retrieving price: ' + npi);
+    var npiInfo = req.params.npi;
+    console.log('Retrieving price: ' + npiInfo);
     db.collection('npi', function(err, collection) {
-        collection.findOne({'npi':new BSON.ObjectID(npi)}, function(err, item) {
+        collection.findOne({npi:npiInfo}, function(err, item) {
             // /**
             //  * HOW TO Make an HTTP Call - GET
             //  */
