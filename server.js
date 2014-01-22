@@ -9,8 +9,9 @@ app.configure(function () {
     app.use(express.bodyParser());
 });
  
-app.get('/prices', prices.findAll);
-app.get('/prices/:npi', prices.findByNpi);
+app.get('/', prices.home);
+// app.get('/prices', prices.findAll);
+// app.get('/prices/npi=:npi?', prices.findByNpi);
 app.post('/prices', prices.addPrice);
 app.put('/prices/:id', prices.updatePrice);
 app.delete('/prices/:id', prices.deletePrice);
