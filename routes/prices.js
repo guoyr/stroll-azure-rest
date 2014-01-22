@@ -57,10 +57,10 @@ exports.findByNpi = function(req, res) {
 
  
 exports.findAll = function(req, res) {
-    db.collection('npi', function(err, collection) {
-        collection.find({}, function(err, items) {
-            res.send(items);
-        });
+    console.log("in find all");
+    var npiCollection = db.collection('npi');
+    npiCollection.find({}, function(err, items) {
+        res.send(items);
     });
 };
  
