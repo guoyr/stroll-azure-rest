@@ -3,29 +3,19 @@ var https = require('https');
   
 var mongoose = require('mongoose');
 var db = mongoose.connection;
-mongoose.connect('mongodb://localhost/strollnpi');
+mongoose.connect('mongodb://localhost/strollnpi:27017');
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     console.log("opened db");
 })
 
-db.open(function(err, db) {
-    if(!err) {
-        console.log("Connected to 'pricedb' database");
-        db.collection('npi', {strict:true}, function(err, collection) {
-            if (err) {
-                console.log("The 'prices' collection doesn't exist. Creating it with sample data...");
-                populateDB();
-            }
-        });
-    }
-});
+
  
 exports.findByNpi = function(req, res) {
     var npiInfo = req.params.npi;
     console.log('Retrieving price: ' + npiInfo);
-    db.collection('npi', function(err, collection) {
-        collection.findOne({npi:npiInfo}, function(err, item) {
+    npi = db.collection('npi')
+    collection.findOne({npi:npiInfo}, function(err, item) {
             // /**
             //  * HOW TO Make an HTTP Call - GET
             //  */
@@ -68,7 +58,7 @@ exports.findByNpi = function(req, res) {
  
 exports.findAll = function(req, res) {
     db.collection('npi', function(err, collection) {
-        collection.find().toArray(function(err, items) {
+        collection.find({}, function(err, items) {
             res.send(items);
         });
     });
