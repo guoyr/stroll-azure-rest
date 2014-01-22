@@ -15,7 +15,10 @@ exports.findByNpi = function(req, res) {
     var npiInfo = req.params.npi;
     console.log('Retrieving price: ' + npiInfo);
     npi = db.collection('npi')
-    collection.findOne({npi:npiInfo}, function(err, item) {
+    collection.findOne({NPI:npiInfo}, function(err, item) {
+        res.send(item);
+    });
+};
             // /**
             //  * HOW TO Make an HTTP Call - GET
             //  */
@@ -51,10 +54,7 @@ exports.findByNpi = function(req, res) {
             // reqGet.on('error', function(e) {
             //     console.error(e);
             // });
-            res.send(item);
-        });
-    });
-};
+
  
 exports.findAll = function(req, res) {
     db.collection('npi', function(err, collection) {
